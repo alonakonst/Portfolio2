@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AdjacencyList {
     private ArrayList<Vertex> vertices;
@@ -18,6 +19,28 @@ public class AdjacencyList {
             return;
         }
         Edge newedge = new Edge(from, to, dist);
+    }
+    public void MSTPrims(){
+        int[] Distance = new int[vertices.size()];
+        int[] Predecessor = new int[vertices.size()];
+        MinHeap<Vertex> Q = new MinHeap<>();
+        Arrays.fill(Distance, Integer.MAX_VALUE);
+        Arrays.fill(Predecessor, -1);
+        if(vertices.size() > 0)
+            Distance[0]=0;
+        for (int i = 0; i <vertices.size(); i ++) {
+            Q.Insert(new Vertex(i));
+
+            while (!Q.isEmpty()){
+                Vertex minVertex = Q.extractMin();
+                for(int v = 0; v < vertices.size(); v++){
+                    if(vertices[minVertex.setOutEdges();][v]==1 &&)
+                }
+
+            }
+        }
+
+
     }
 
     public void printGraph() {
@@ -72,6 +95,7 @@ public class AdjacencyList {
         public void addOutEdge(Edge outEdge) {
             outEdges.add(outEdge);
         }
+
 
         @Override
         public int compareTo(Vertex o) {
