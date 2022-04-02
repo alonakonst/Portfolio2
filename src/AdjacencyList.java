@@ -29,12 +29,12 @@ public class AdjacencyList {
         if(vertices.size() > 0)
             Distance[0]=0;
         for (int i = 0; i <vertices.size(); i ++) {
-            Q.Insert(new Vertex(i));
+            Q.Insert(new Vertex(Integer.toString(i)));
 
             while (!Q.isEmpty()){
                 Vertex minVertex = Q.extractMin();
                 for(int v = 0; v < vertices.size(); v++){
-                    if(vertices[minVertex.setOutEdges();][v]==1 &&)
+                    //if(vertices[minVertex.setOutEdges()][v]==1)
                 }
 
             }
@@ -47,11 +47,11 @@ public class AdjacencyList {
         Vertex currentv;
         for (int i = 0; i < vertices.size(); i++) {
             currentv = vertices.get(i);
-            System.out.println("Edges from Vertex: " + currentv.getName());
+            System.out.println("Edges from city: " + currentv.getName());
             for (int j = 0; j < currentv.getOutEdges().size(); j++)
             {
                 Edge currente = currentv.getOutEdges().get(j);
-                System.out.println("To " + currente.getToVertex().getName() + " weight " + currente.getWeight());
+                System.out.println(" To " + currente.getToVertex().getName() + " the distance is " + currente.getWeight());
             }
             System.out.println("");
         }
