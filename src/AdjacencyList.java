@@ -13,48 +13,68 @@ public class AdjacencyList {
     }
 
     public void newEdge(Vertex from, Vertex to, Integer dist) {
-        if (!(vertices.contains(from) && vertices.contains(to)))
-        {
+        if (!(vertices.contains(from) && vertices.contains(to))) {
             System.out.println("Vertex not found ");
             return;
         }
         Edge newedge = new Edge(from, to, dist);
-    }
-    public void MSTPrims(){
-        int[] Distance = new int[vertices.size()];
-        int[] Predecessor = new int[vertices.size()];
-        MinHeap<Vertex> Q = new MinHeap<>();
-        Arrays.fill(Distance, Integer.MAX_VALUE);
-        Arrays.fill(Predecessor, -1);
-        if(vertices.size() > 0)
-            Distance[0]=0;
-        for (int i = 0; i <vertices.size(); i ++) {
-            Q.Insert(new Vertex(i));
-
-            while (!Q.isEmpty()){
-                Vertex minVertex = Q.extractMin();
-                for(int v = 0; v < vertices.size(); v++){
-                    if(vertices[minVertex.setOutEdges();][v]==1 &&)
-                }
-
-            }
-        }
-
-
     }
 
     public void printGraph() {
         Vertex currentv;
         for (int i = 0; i < vertices.size(); i++) {
             currentv = vertices.get(i);
-            System.out.println("Edges from Vertex: " + currentv.getName());
+            System.out.println("Edges from city: " + currentv.getName());
             for (int j = 0; j < currentv.getOutEdges().size(); j++)
             {
                 Edge currente = currentv.getOutEdges().get(j);
-                System.out.println("To " + currente.getToVertex().getName() + " weight " + currente.getWeight());
+                System.out.println("To " + currente.getToVertex().getName() + " distance " + currente.getWeight());
             }
             System.out.println("");
         }
+    }
+   public void MSTPrims() {
+        int[] Distance = new int[vertices.size()];
+        int[] Predecessor = new int[vertices.size()];
+        boolean[] visited = new boolean[vertices.size()];
+
+        MinHeap<Vertex> Q = new MinHeap<>();
+        Arrays.fill(Distance, Integer.MAX_VALUE);
+        Arrays.fill(Predecessor, 0);
+        Arrays.fill(visited, false);
+
+        if (vertices.size() > 0) {
+            Distance[0] = 0;
+        }
+        for (int i = 0; i < vertices.size(); i++) {
+            Q.Insert(new Vertex(Integer.toString(i)));
+        }
+
+        int MST = 0;
+        while (!Q.isEmpty()) {
+            Vertex u = Q.extractMin();
+            for (int v = 0; v < vertices.size(); v++) {
+                if (vertices.size() && (u.getOutEdges().get(v).getWeight() < Distance[v]) && !visited[v]) {
+                    Distance[v] = u.getDistance();
+                    Predecessor[v] = u.getWeight();
+
+                    System.out.println(Q.viewMin().distance);
+                    int pos = Q.getPosition(vertices.get(v));
+                    vertices.get(v).distance = u.getDistance();
+                    Q.decreasekey(pos);
+
+                }
+            }
+
+            visited[u.distance] = true;
+            MST = MST + Distance[u.distance];
+        }
+        System.out.println(MST);
+
+        for(int i = 0; i < vertices.size(); i++){
+            System.out.println("Parent: " + Predecessor[i] + " to " + i + " with weight: " + Distance[i]);
+        }
+
     }
 }
 
@@ -62,6 +82,7 @@ public class AdjacencyList {
         private String Name;
         private ArrayList<Edge> outEdges;
         Integer distance = Integer.MAX_VALUE;
+
 
         public String getName() {
             return Name;
@@ -144,4 +165,5 @@ public class AdjacencyList {
             from.addOutEdge(this);
         }
     }
+
 
