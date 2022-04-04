@@ -119,7 +119,7 @@ public class Main {
         adjgraph.newEdge(Sorø, Slagelse, 14);
         adjgraph.newEdge(Sorø, Ringsted, 15);
         adjgraph.newEdge(Sorø, Næstved, 32);
-        adjgraph.newEdge(Sorø, Kalundborg, 15);
+        adjgraph.newEdge(Sorø, Kalundborg, 51);
         adjgraph.newEdge(Sorø, Jærgerspris, 63);
         adjgraph.newEdge(Sorø, Holbæk, 34);
         adjgraph.newEdge(Sorø, Haslev, 34);
@@ -128,9 +128,10 @@ public class Main {
         adjgraph.newEdge(Vordingborg, Næstved, 28);
         adjgraph.newEdge(Vordingborg, Køge, 60);
         adjgraph.newEdge(Vordingborg, Eskildstrup, 24);
+        adjgraph.newEdge(Vordingborg, Haslev, 40);
 
         adjgraph.newEdge(Roskilde, Ringsted, 31);
-        adjgraph.newEdge(Ringsted, Næstved, 57);
+        adjgraph.newEdge(Roskilde, Næstved, 57);
         adjgraph.newEdge(Roskilde, Køge, 25);
         adjgraph.newEdge(Roskilde, Kalundborg, 70);
         adjgraph.newEdge(Roskilde, Jærgerspris, 33);
@@ -144,6 +145,7 @@ public class Main {
 
         adjgraph.printGraph();
         adjgraph.MSTPrims();
+
     }
 }
 
