@@ -34,7 +34,6 @@ public class AdjacencyList {
     }
 
     public void MSTPrims() {
-
         MinHeap<Vertex> Q = new MinHeap<>();
 
         if (vertices.size() > 0) {
@@ -49,47 +48,45 @@ public class AdjacencyList {
 
         while (!Q.isEmpty()) {
             Vertex u = Q.extractMin();
+            Vertex v ;
+            
             for (int e = 0; e < u.getOutEdges().size(); e++) {
-                Vertex v = u.getOutEdges().get(e).getToVertex();
+                 v = u.getOutEdges().get(e).getToVertex();
+
+                
 
                 if ((u.getOutEdges().get(e).getWeight() < v.distance) && !v.visited) {
-                    v.distance = u.getOutEdges().get(e).getWeight();
-                    //System.out.println(Q.viewMin().distance);
+                    v.distance = u.getOutEdges().get(e).getWeight();//all edges
                     int pos = Q.getPosition(v);
                     Q.decreasekey(pos);
 
+
                 }
+
+
+
+                
+
+             
+                
             }
-
-
+            MST = MST + u.getDistance(); 
             u.visited = true;
-            MST = MST + u.getDistance();
 
+            Vertex p;
+            for(int j= 0; j<1; j++){
+                p=u.getOutEdges().get(j).getToVertex();
+            System.out.println("from " + u.getName() +  " to " +p.getName()+ " weight: " + u.getDistance());
+        }
+               
 
         }
-        Vertex p;
 
         System.out.println("Minimum spanning tree is: " + MST + "km.");
-        for (int i = 0; i < vertices.size(); i++) {
-            p = vertices.get(i);
-           System.out.println("Parent: " + p.getName() + " to " + p.getOutEdges().get(i).getToVertex().getName() + " with weight: "  + p.getOutEdges().get(i).getWeight()   );
-        }
+        System.out.println("The total price is: " + MST*1000000 + " kr.");
+    
     }
 
-
-
-        /*for (int i = 0; i < vertices.size(); i++) {
-            currentv = vertices.get(i);
-            nextv = vertices.get(i++);
-            System.out.println("Parent: " + currentv.getName() + " to " + nextv.getName() + " with weight: " );
-            for (int j = 0; j < currentv.getOutEdges().size(); j++) {
-                Edge currente = currentv.getOutEdges().get(j);
-                System.out.println("To " + currente.getToVertex().getName() + " distance " + currente.getWeight());
-            }
-            System.out.println("");
-        }
-
-    }*/
 }
 
 
