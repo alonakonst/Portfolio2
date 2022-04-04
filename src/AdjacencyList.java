@@ -67,10 +67,12 @@ public class AdjacencyList {
 
 
         }
+        Vertex p;
 
-        System.out.println("Minimum spanning tree is: " + MST);
+        System.out.println("Minimum spanning tree is: " + MST + "km.");
         for (int i = 0; i < vertices.size(); i++) {
-           System.out.println("Parent: " + vertices.get(i).getName() + " to " + Q.viewMin().distance + " with weight: "    );
+            p = vertices.get(i);
+           System.out.println("Parent: " + p.getName() + " to " + p.getOutEdges().get(i).getToVertex().getName() + " with weight: "  + p.getOutEdges().get(i).getWeight()   );
         }
     }
 
@@ -97,7 +99,6 @@ public class AdjacencyList {
         Integer distance = Integer.MAX_VALUE;
         Vertex prev = null;
         public boolean visited = false;
-
 
         public String getName() {
             return Name;
