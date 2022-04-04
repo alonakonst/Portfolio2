@@ -143,7 +143,7 @@ public class Main {
         adjgraph.newEdge(Nakskov, Maribo, 27);
 
         adjgraph.printGraph();
-        //adjgraph.MSTPrims();
+        adjgraph.MSTPrims();
     }
 }
 

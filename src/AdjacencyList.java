@@ -34,45 +34,49 @@ public class AdjacencyList {
         }
     }
    public void MSTPrims() {
-        int[] Distance = new int[vertices.size()];
+        /*int[] Distance = new int[vertices.size()];
         int[] Predecessor = new int[vertices.size()];
-        boolean[] visited = new boolean[vertices.size()];
+        boolean[] visited = new boolean[vertices.size()];*/
 
         MinHeap<Vertex> Q = new MinHeap<>();
-        Arrays.fill(Distance, Integer.MAX_VALUE);
+        /*Arrays.fill(Distance, Integer.MAX_VALUE);
         Arrays.fill(Predecessor, 0);
-        Arrays.fill(visited, false);
+        Arrays.fill(visited, false);*/
 
         if (vertices.size() > 0) {
-            Distance[0] = 0;
+            vertices.get(0).distance = 0;
+            vertices.get(0).prev = vertices.get(0);
         }
         for (int i = 0; i < vertices.size(); i++) {
-            Q.Insert(new Vertex(Integer.toString(i)));
+            Q.Insert(vertices.get(i));
         }
 
         int MST = 0;
+
         while (!Q.isEmpty()) {
             Vertex u = Q.extractMin();
-            for (int v = 0; v < vertices.size(); v++) {
-                if (vertices.size() && (u.getOutEdges().get(v).getWeight() < Distance[v]) && !visited[v]) {
-                    Distance[v] = u.getDistance();
-                    Predecessor[v] = u.getWeight();
+            for (int e = 0; e < u.getOutEdges().size(); e++) {
+                Vertex v = u.getOutEdges().get(e).getToVertex();
+
+                if ((u.getOutEdges().get(e).getWeight() < v.distance) && !v.visited) {
 
                     System.out.println(Q.viewMin().distance);
-                    int pos = Q.getPosition(vertices.get(v));
-                    vertices.get(v).distance = u.getDistance();
+                    int pos = Q.getPosition(v);
+                    u.getOutEdges().get().getWeight() = v.distance;
                     Q.decreasekey(pos);
 
                 }
             }
+                u.visited= true;
+                MST = MST + u.getDistance();
 
-            visited[u.distance] = true;
-            MST = MST + Distance[u.distance];
+
+
         }
         System.out.println(MST);
 
         for(int i = 0; i < vertices.size(); i++){
-            System.out.println("Parent: " + Predecessor[i] + " to " + i + " with weight: " + Distance[i]);
+            //System.out.println("Parent: " +  + " to " + i + " with weight: " + Distance[i]);
         }
 
     }
@@ -82,6 +86,9 @@ public class AdjacencyList {
         private String Name;
         private ArrayList<Edge> outEdges;
         Integer distance = Integer.MAX_VALUE;
+        Vertex prev = null;
+        public boolean visited = false;
+
 
 
         public String getName() {
@@ -132,7 +139,7 @@ public class AdjacencyList {
     class Edge {
         private Vertex fromVertex;
         private Vertex toVertex;
-        private Integer weight;
+        public Integer weight;
 
         public Vertex getFromVertex() {
             return fromVertex;
