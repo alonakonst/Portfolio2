@@ -56,26 +56,32 @@ Vertex predecessor;
 
 
                 if ((u.getOutEdges().get(e).getWeight() < v.distance) && !v.visited) {
+                   v.setPrev(u);
                     v.distance = u.getOutEdges().get(e).getWeight();//all edges
                     int pos = Q.getPosition(v);
                     Q.decreasekey(pos);
 
                 }
+
+                
                 
             }
             MST = MST + u.getDistance(); 
             u.visited = true;
 
-           
-           
-            System.out.println("from "   +  " to " +u.getName()+ " weight: " + u.getDistance());
-           
-               
-
+        
+            if(u.distance == 0){
+                System.out.println(u.getName() + " is the starting point");
+                 } else {
+                     System.out.println("From " + u.getPrev(u).getName() + " to " + u.getName() +" with ditance " + u.distance +  " km.");
+                 }
+        
         }
-
+        System.out.println(" ");
         System.out.println("Minimum spanning tree is: " + MST + "km.");
         System.out.println("The total price is: " + MST*1000000 + " kr.");
+      
+        
     
     }
 
@@ -89,7 +95,13 @@ Vertex predecessor;
         Vertex prev = null;
         public boolean visited = false;
 
+        public void setPrev(Vertex prev){
+            this.prev = prev;
+        }
 
+        public Vertex getPrev(Vertex prev){
+            return this.prev;
+        }
 
         public String getName() {
             return Name;
