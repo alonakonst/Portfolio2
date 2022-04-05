@@ -35,7 +35,8 @@ public class AdjacencyList {
 
     public void MSTPrims() {
         MinHeap<Vertex> Q = new MinHeap<>();
-
+Vertex predecessor;
+       
         if (vertices.size() > 0) {
             vertices.get(0).distance = 0;
             vertices.get(0).prev = vertices.get(0);
@@ -53,31 +54,22 @@ public class AdjacencyList {
             for (int e = 0; e < u.getOutEdges().size(); e++) {
                  v = u.getOutEdges().get(e).getToVertex();
 
-                
 
                 if ((u.getOutEdges().get(e).getWeight() < v.distance) && !v.visited) {
                     v.distance = u.getOutEdges().get(e).getWeight();//all edges
                     int pos = Q.getPosition(v);
                     Q.decreasekey(pos);
 
-
                 }
-
-
-
-                
-
-             
                 
             }
             MST = MST + u.getDistance(); 
             u.visited = true;
 
-            Vertex p;
-            for(int j= 0; j<1; j++){
-                p=u.getOutEdges().get(j).getToVertex();
-            System.out.println("from " + u.getName() +  " to " +p.getName()+ " weight: " + u.getDistance());
-        }
+           
+           
+            System.out.println("from "   +  " to " +u.getName()+ " weight: " + u.getDistance());
+           
                
 
         }
@@ -96,6 +88,8 @@ public class AdjacencyList {
         Integer distance = Integer.MAX_VALUE;
         Vertex prev = null;
         public boolean visited = false;
+
+
 
         public String getName() {
             return Name;
